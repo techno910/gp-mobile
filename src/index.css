@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-display: "Outfit", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Strict View-Only Protection for Certificates on Print */
+@media print {
+  .certificate-protected,
+  .certificate-protected * {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+/* Eye-Catching Offer Blink & Glow Animations */
+@keyframes offerBadgePulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes offerBorderGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(251, 191, 36, 0.35), 0 12px 32px -12px var(--offer-glow-color, rgba(220, 38, 38, 0.55));
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(251, 191, 36, 0.75), 0 18px 44px -8px var(--offer-glow-color, rgba(220, 38, 38, 0.8));
+  }
+}
+
+.animate-offer-blink {
+  animation: offerBadgePulse 1.6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-offer-glow {
+  animation: offerBorderGlow 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-offer-blink,
+  .animate-offer-glow {
+    animation: none;
+  }
+}
+

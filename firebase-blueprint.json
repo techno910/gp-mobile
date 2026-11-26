@@ -1,0 +1,209 @@
+{
+  "entities": {
+    "StoreProfile": {
+      "title": "StoreProfile",
+      "description": "Public storefront profile, live promotional configuration, module abouts, section banners, and map location for GP MOBILE & CSC CENTRE.",
+      "type": "object",
+      "properties": {
+        "shopName": { "type": "string", "maxLength": 120 },
+        "tagline": { "type": "string", "maxLength": 200 },
+        "whatsappNumber": { "type": "string", "maxLength": 24 },
+        "callNumber": { "type": "string", "maxLength": 24 },
+        "address": { "type": "string", "maxLength": 300 },
+        "mapLinkUrl": { "type": "string", "maxLength": 600 },
+        "shopPhotoUrl": { "type": "string", "maxLength": 900000 },
+        "ownerPhotoUrl": { "type": "string", "maxLength": 900000 },
+        "sectionBanners": { "type": "object" },
+        "offerBanner": { "type": "string", "maxLength": 300 },
+        "offerStartDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "offerEndDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "offerBlinkEnabled": { "type": "boolean" },
+        "offerBadgeText": { "type": "string", "maxLength": 80 },
+        "offerTheme": { "type": "string", "enum": ["CRIMSON_GOLD", "SAFFRON_FIRE", "EMERALD_NEON", "ROYAL_PURPLE"] },
+        "isWebsiteLive": { "type": "boolean" },
+        "moduleAbouts": { "type": "object" }
+      },
+      "required": ["shopName", "isWebsiteLive"]
+    },
+    "CatalogItem": {
+      "title": "CatalogItem",
+      "description": "Mobile phones, second-hand devices, accessories, and covers in store catalog with multi-image and video gallery.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 160 },
+        "category": { "type": "string", "enum": ["NEW_PHONE", "SECOND_HAND", "ACCESSORY", "COVER"] },
+        "brand": { "type": "string", "maxLength": 80 },
+        "ramStorage": { "type": "string", "maxLength": 60 },
+        "color": { "type": "string", "maxLength": 60 },
+        "condition": { "type": "string", "maxLength": 60 },
+        "batteryHealth": { "type": "string", "maxLength": 40 },
+        "warrantyLeft": { "type": "string", "maxLength": 80 },
+        "designType": { "type": "string", "maxLength": 80 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "sellingPricePaise": { "type": "number" },
+        "mrpPaise": { "type": "number" },
+        "stockCount": { "type": "number" },
+        "emiAvailable": { "type": "boolean" },
+        "imageDataUrl": { "type": "string", "maxLength": 900000 },
+        "galleryImages": { "type": "array" },
+        "videoUrlOrData": { "type": "string", "maxLength": 900000 },
+        "isVisibleOnWebsite": { "type": "boolean" }
+      },
+      "required": ["title", "category", "sellingPricePaise", "stockCount", "isVisibleOnWebsite"]
+    },
+    "ServiceItem": {
+      "title": "ServiceItem",
+      "description": "Mobile repair, CSC citizen services, Banking Seva, and SIM Services with multi-image and video gallery.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 160 },
+        "category": { "type": "string", "enum": ["REPAIR", "CSC", "BANKING", "SIM"] },
+        "operatorName": { "type": "string", "maxLength": 60 },
+        "priceLabel": { "type": "string", "maxLength": 80 },
+        "feePaise": { "type": "number" },
+        "estimatedTime": { "type": "string", "maxLength": 80 },
+        "requiredDocuments": { "type": "string", "maxLength": 500 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "imageDataUrl": { "type": "string", "maxLength": 900000 },
+        "galleryImages": { "type": "array" },
+        "videoUrlOrData": { "type": "string", "maxLength": 900000 },
+        "isVisibleOnWebsite": { "type": "boolean" }
+      },
+      "required": ["name", "category", "isVisibleOnWebsite"]
+    },
+    "MediaAsset": {
+      "title": "MediaAsset",
+      "description": "Chunked media metadata stored under public_stores/{storeId}/media/{mediaId}.",
+      "type": "object",
+      "properties": {
+        "mimeType": { "type": "string", "maxLength": 120 },
+        "fileName": { "type": "string", "maxLength": 200 }
+      },
+      "required": ["mimeType"]
+    },
+    "MediaChunk": {
+      "title": "MediaChunk",
+      "description": "Ordered base64 chunk for chunked media reconstruction.",
+      "type": "object",
+      "properties": {
+        "index": { "type": "number" },
+        "data": { "type": "string", "maxLength": 950000 }
+      },
+      "required": ["index", "data"]
+    },
+    "DownloadItem": {
+      "title": "DownloadItem",
+      "description": "Downloadable PDF forms, guides, and official documents.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "maxLength": 160 },
+        "description": { "type": "string", "maxLength": 1000 },
+        "category": { "type": "string", "maxLength": 80 },
+        "fileName": { "type": "string", "maxLength": 160 },
+        "fileSizeLabel": { "type": "string", "maxLength": 40 },
+        "fileUrlOrData": { "type": "string", "maxLength": 950000 },
+        "downloadsCount": { "type": "number" },
+        "isVisibleOnWebsite": { "type": "boolean" }
+      },
+      "required": ["title", "fileUrlOrData", "downloadsCount", "isVisibleOnWebsite"]
+    },
+    "CertificateItem": {
+      "title": "CertificateItem",
+      "description": "View-only verified shop and CSC certificates.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "maxLength": 160 },
+        "issuedBy": { "type": "string", "maxLength": 160 },
+        "year": { "type": "string", "maxLength": 16 },
+        "category": { "type": "string", "maxLength": 80 },
+        "imageDataUrl": { "type": "string", "maxLength": 900000 },
+        "isVisibleOnWebsite": { "type": "boolean" }
+      },
+      "required": ["name", "imageDataUrl", "isVisibleOnWebsite"]
+    },
+    "RepairRecord": {
+      "title": "RepairRecord",
+      "description": "Repair job card tracking status.",
+      "type": "object",
+      "properties": {
+        "jobCardNumber": { "type": "string", "maxLength": 60 },
+        "customerName": { "type": "string", "maxLength": 100 },
+        "customerMobile": { "type": "string", "maxLength": 20 },
+        "deviceModel": { "type": "string", "maxLength": 120 },
+        "status": { "type": "string", "enum": ["RECEIVED", "IN_REPAIR", "READY", "DELIVERED"] }
+      },
+      "required": ["jobCardNumber", "deviceModel", "status"]
+    },
+    "LeadSubmission": {
+      "title": "LeadSubmission",
+      "description": "Customer entry gate or sell-your-phone lead submitted from storefront.",
+      "type": "object",
+      "properties": {
+        "leadType": { "type": "string", "enum": ["ENTRY_GATE", "SELL_PHONE"] },
+        "customerName": { "type": "string", "minLength": 1, "maxLength": 100 },
+        "mobile": { "type": "string", "minLength": 6, "maxLength": 20 },
+        "address": { "type": "string", "maxLength": 250 },
+        "purpose": { "type": "string", "maxLength": 120 },
+        "detailsText": { "type": "string", "maxLength": 1000 },
+        "expectedPricePaise": { "type": "number" },
+        "photoDataUrl": { "type": "string", "maxLength": 250000 },
+        "status": { "type": "string", "enum": ["NEW"] },
+        "businessDate": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "timeLabel": { "type": "string", "maxLength": 20 },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "leadType",
+        "customerName",
+        "mobile",
+        "address",
+        "purpose",
+        "detailsText",
+        "expectedPricePaise",
+        "photoDataUrl",
+        "status",
+        "businessDate",
+        "timeLabel",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/public_stores/{storeId}": {
+      "schema": { "$ref": "#/entities/StoreProfile" },
+      "description": "Public storefront configuration document (storeId: gp_mobile_csc)."
+    },
+    "/public_stores/{storeId}/catalog/{itemId}": {
+      "schema": { "$ref": "#/entities/CatalogItem" },
+      "description": "Public catalog items filtered by isVisibleOnWebsite."
+    },
+    "/public_stores/{storeId}/services/{serviceId}": {
+      "schema": { "$ref": "#/entities/ServiceItem" },
+      "description": "Public repair, CSC, banking, and SIM services."
+    },
+    "/public_stores/{storeId}/media/{mediaId}": {
+      "schema": { "$ref": "#/entities/MediaAsset" },
+      "description": "Metadata for chunked media assets."
+    },
+    "/public_stores/{storeId}/media/{mediaId}/chunks/{chunkId}": {
+      "schema": { "$ref": "#/entities/MediaChunk" },
+      "description": "Ordered base64 data chunks for chunked media."
+    },
+    "/public_stores/{storeId}/downloads/{downloadId}": {
+      "schema": { "$ref": "#/entities/DownloadItem" },
+      "description": "Published PDF downloads with atomic download counter increment."
+    },
+    "/public_stores/{storeId}/certificates/{certificateId}": {
+      "schema": { "$ref": "#/entities/CertificateItem" },
+      "description": "View-only verified certificates."
+    },
+    "/public_stores/{storeId}/repair_tracker/{jobId}": {
+      "schema": { "$ref": "#/entities/RepairRecord" },
+      "description": "Repair job card records queried by jobCardNumber or customerMobile."
+    },
+    "/public_stores/{storeId}/leads/{leadId}": {
+      "schema": { "$ref": "#/entities/LeadSubmission" },
+      "description": "Write-only customer leads (ENTRY_GATE and SELL_PHONE)."
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "GP MOBILE & CSC CENTRE",
+  "description": "Official customer storefront for GP MOBILE & CSC CENTRE in Hazaribag — New & Second Hand Smartphones, Accessories & Covers, Mobile Repairing, CSC & Banking Seva, PDF Downloads, Verified Certificates, and Live Repair Status Tracker.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
